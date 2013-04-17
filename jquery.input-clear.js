@@ -36,7 +36,7 @@ THE SOFTWARE.
                 .bind("clear-focus", (
                     function () {
                         if ($(this).data("clear-button")) return;
-                        var x = $("<a class='clear-text' style='cursor:pointer;color:#888;'><i class='icon-remove'></i></a>");
+                        var x = $("<a class='clear-text' style='cursor:pointer;color:#888;'><i class='glyphicon-remove'></i></a>");
                         $(x).data("text-box", this);
                         $(x).mouseover(function () { $(this).addClass("over"); }).mouseleave(function () { $(this).removeClass("over"); });
                         $(this).data("clear-button", x);
