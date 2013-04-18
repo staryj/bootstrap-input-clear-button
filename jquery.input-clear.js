@@ -36,12 +36,14 @@ THE SOFTWARE.
                 .bind("clear-focus", (
                     function () {
                         if ($(this).data("clear-button")) return;
-                        var x = $("<a class='clear-text' style='cursor:pointer;color:#888;'><i class='glyphicon-remove'></i></a>");
+                        var x = $("<a class='clear-text' style='cursor:pointer;color:#888;text-decoration: none;'><i class='glyphicon glyphicon-remove'></i></a>");
                         $(x).data("text-box", this);
                         $(x).mouseover(function () { $(this).addClass("over"); }).mouseleave(function () { $(this).removeClass("over"); });
                         $(this).data("clear-button", x);
-                        $(x).css({ "position": "absolute", "left": ($(this).position().right), "top": $(this).position().top, "margin": "3px 0px 0px -20px" });
+                        $(x).css({ "position": "absolute", "left": ($(this).position().right), "top": $(this).position().top, "margin": "7px 0 0 -20px" });
                         $(this).after(x);
+                        $(this).css({"padding-right": "20px"});
+
                     //$(this));
                     }))
                 .unbind("clear-blur").bind("clear-blur", (
@@ -51,7 +53,7 @@ THE SOFTWARE.
                             if ($(x).hasClass("over")) {
                                 $(x).removeClass("over");
                                 $(x).hide().remove();
-                                $(this).val("");
+                                $(this).val("").trigger("change");
                                 $(this).removeData("clear-button");
                                 var txt = this;
                                 e.stopPropagation();
@@ -63,6 +65,7 @@ THE SOFTWARE.
                         if (x && !$(x).hasClass("over")) {
                             $(this).removeData("clear-button");
                             $(x).remove();
+                            $(this).css({"padding-right": "0"});
                         }
                     }));
 	        // add private event to the focus/unfocus events as branches
